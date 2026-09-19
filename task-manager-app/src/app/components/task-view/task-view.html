@@ -1,0 +1,65 @@
+<div class="row mb-3">
+  <div class="col">
+    <h2>View Task</h2>
+  </div>
+  <div class="col text-end">
+    <a routerLink="/tasks" class="btn btn-secondary">Back</a>
+  </div>
+</div>
+
+<!-- Loading Spinner -->
+<div *ngIf="!task" class="text-center mt-5">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <p class="mt-2 text-muted">Loading task details...</p>
+</div>
+
+<!-- Task Details - No ngIf, always visible -->
+<div class="card shadow-sm" [style.display]="task ? 'block' : 'none'">
+  <div class="card-header bg-dark text-white">
+    <h5 class="mb-0">Task Details</h5>
+  </div>
+  <div class="card-body">
+
+    <div class="mb-4">
+      <label class="fw-bold text-muted small text-uppercase">Title</label>
+      <p class="fs-5 mb-0">{{ task?.title }}</p>
+    </div>
+
+    <hr/>
+
+    <div class="mb-4">
+      <label class="fw-bold text-muted small text-uppercase">Description</label>
+      <p class="mb-0">{{ task?.description || 'No description provided.' }}</p>
+    </div>
+
+    <hr/>
+
+    <div class="mb-4">
+      <label class="fw-bold text-muted small text-uppercase">Status</label><br/>
+      <span class="badge fs-6 mt-1"
+        [ngClass]="{
+          'bg-warning text-dark': task?.status === 'pending',
+          'bg-primary': task?.status === 'in_progress',
+          'bg-success': task?.status === 'completed'
+        }">
+        {{ task?.status }}
+      </span>
+    </div>
+
+    <hr/>
+
+    <div class="mb-4">
+      <label class="fw-bold text-muted small text-uppercase">Created At</label>
+      <p class="mb-0">{{ task?.created_at | date:'medium' }}</p>
+    </div>
+
+    <div class="mt-4 d-flex gap-2">
+      <a [routerLink]="['/tasks/edit', task?.id]" class="btn btn-warning">Edit</a>
+      <button (click)="deleteTask()" class="btn btn-danger">Delete</button>
+      <a routerLink="/tasks" class="btn btn-secondary">Cancel</a>
+    </div>
+
+  </div>
+</div>

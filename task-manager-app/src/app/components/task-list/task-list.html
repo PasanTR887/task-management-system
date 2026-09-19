@@ -1,0 +1,47 @@
+<div class="row mb-3">
+  <div class="col">
+    <h2>All Tasks</h2>
+  </div>
+  <div class="col text-end">
+    <a routerLink="/tasks/add" class="btn btn-primary">Add Task</a>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-hover">
+    <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let task of tasks">
+        <td>{{ task.id }}</td>
+        <td>{{ task.title }}</td>
+        <td>{{ task.description }}</td>
+        <td>
+          <span class="badge"
+            [ngClass]="{
+              'bg-warning text-dark': task.status === 'pending',
+              'bg-primary': task.status === 'in_progress',
+              'bg-success': task.status === 'completed'
+            }">
+            {{ task.status }}
+          </span>
+        </td>
+        <td>
+          <a [routerLink]="['/tasks/view', task.id]" class="btn btn-info btn-sm me-1">View</a>
+          <a [routerLink]="['/tasks/edit', task.id]" class="btn btn-warning btn-sm me-1">Edit</a>
+          <button (click)="deleteTask(task.id!)" class="btn btn-danger btn-sm">Delete</button>
+        </td>
+      </tr>
+      <tr *ngIf="tasks.length === 0">
+        <td colspan="5" class="text-center text-muted">No tasks found. Add one!</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

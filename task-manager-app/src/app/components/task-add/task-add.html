@@ -1,0 +1,51 @@
+<div class="row mb-3">
+  <div class="col">
+    <h2>Add Task</h2>
+  </div>
+  <div class="col text-end">
+    <a routerLink="/tasks" class="btn btn-secondary">Back</a>
+  </div>
+</div>
+
+<div class="card shadow-sm">
+  <div class="card-body">
+    <form (ngSubmit)="submitForm()">
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="task.title"
+          name="title"
+          placeholder="Enter task title"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Description</label>
+        <textarea
+          class="form-control"
+          [(ngModel)]="task.description"
+          name="description"
+          rows="4"
+          placeholder="Enter task description"
+        ></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label fw-bold">Status</label>
+        <select class="form-select" [(ngModel)]="task.status" name="status">
+          <option value="pending">Pending</option>
+          <option value="in_progress">In Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Add</button>
+      <a routerLink="/tasks" class="btn btn-secondary ms-2">Cancel</a>
+
+    </form>
+  </div>
+</div>

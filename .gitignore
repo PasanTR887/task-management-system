@@ -1,0 +1,30 @@
+# =========================
+# Laravel Backend
+# =========================
+
+task-manager-api/vendor/
+task-manager-api/.env
+task-manager-api/.env.*
+!task-manager-api/.env.example
+
+task-manager-api/storage/*.key
+task-manager-api/storage/logs/*
+task-manager-api/bootstrap/cache/*
+
+
+# =========================
+# Angular Frontend
+# =========================
+
+task-manager-app/node_modules/
+task-manager-app/dist/
+task-manager-app/.angular/
+
+
+# =========================
+# General
+# =========================
+
+.DS_Store
+Thumbs.db
+*.log
